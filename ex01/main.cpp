@@ -16,7 +16,7 @@ void reverse(char &letter);
 void _add(int &nbr)
 {
     nbr++;
-    std::cout << nbr << std::endl;
+    //std::cout << nbr << std::endl;
 }
 
 void reverse(char &a)
@@ -25,7 +25,7 @@ void reverse(char &a)
         a+=32;
     else if (a >= 'a' && a <= 'z')
         a-=32;
-    std::cout << a << std::endl;
+   // std::cout << a << std::endl;
     
     
 }
