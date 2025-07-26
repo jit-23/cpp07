@@ -4,6 +4,20 @@
 #include <string>
 #include <exception>
 #include <stdexcept>
+#include <vector>
+
+
+#define RED "\033[31m"
+#define GREEN "\033[32m"
+#define YELLOW "\033[33m" 
+#define BLUE  "\033[34m"
+#define OLIVE "\033[38;5;3m"
+#define PURPLE "\033[38;5;5m"
+#define ORANGE "\033[38;5;208m"
+#define CYAN "\033[38;5;6m"
+#define LIGHT_GRAY "\033[38;5;7m"
+#define DARK_GRAY "\033[38;5;8m"
+#define END  "\033[0m"
 
 
 template <typename T1>
@@ -18,12 +32,94 @@ public:
     Array(unsigned int i);
     Array(Array const &other);
     Array& operator=(Array const &other);
-    int & operator[](int index);
+    T1 operator[](int index);
     ~Array();
     unsigned int Size() const;
     void SetArray(int _index, T1 v);
-    void SetSize(unsigned int _size);
+    //void SetSize(unsigned int _size);
 };
+
+/**********************************************************/
+/* THIS ARE THE DEFINITION OF THE TEMPLATE FUNCTIONS      */
+/* WHEN  USING TEMPLATES, THE DEFINITION OF TIS FUNCTIONS */
+/* CAN'T GO TO THE .CPP FILE. IF THATS THE CASE, THE      */
+/* COMPILER WILL NOT BE ABLE TO PROCCESS IT               */
+/**********************************************************/
+
+template<typename T1>
+unsigned int Array<T1>::Size() const {return (this->size);}
+
+//template<typename T1>
+/* void Array<T1>::SetSize(unsigned int _size)
+{
+    this->size = _size;
+    delete [] ptr;
+    ptr = new T1[this->size]; 
+} */
+
+/* template<typename T1>
+Array<T1>::Array(unsigned int _size) : size(_size)  {std::cout << "Array Default Constructor called!!" << std::endl;}
+ */
+template<typename T1>
+Array<T1>::Array(Array const &other) : size(other.size) 
+{
+    std::cout << "Array Copy constructor called!" << std::endl;
+    this->ptr = new T1[size]; // default made by myself
+    for (int i = 0; i < this->size; i++)
+        this->ptr[i] = other.ptr[i];
+}
+
+
+template<typename T1>
+Array<T1>& Array<T1>::operator=(Array const &other){
+    if (this != &other)
+    {
+        this->SetSize(other.Size());
+        delete this->ptr;
+        this->ptr = new T1[this->Size()];
+        for (int i = 0; i < this->size; i++)
+            ptr[i] = other.ptr[i];
+    }
+    return (*this);
+}
+
+template<typename T1>
+Array<T1>::Array() : size(0)
+{
+    std::cout << "Array Default constructor called!" << std::endl;
+    this->ptr = new T1[size]; // default made by myself
+
+}
+ 
+template<typename T1>
+Array<T1>::Array(unsigned int _size) : size(_size)
+{
+    std::cout << "Array Default constructor called!" << std::endl;
+    this->ptr = new T1[size]; // default made by myself
+}
+
+template<typename T1>
+T1 Array<T1>::operator[](int index)
+{
+    if (static_cast<unsigned int >(index) >= this->Size())
+        throw std::runtime_error("index out of bound!");
+    return (this->ptr[index]);
+}
+
+template<typename T1>
+void Array<T1>::SetArray(int _index, T1 v){
+    this->ptr[_index] = v;
+}
+
+
+template<typename T1>
+Array<T1>::~Array()
+{
+    delete [] ptr;
+    std::cout << "Array Destructor called!" << std::endl;
+}
+
+
 
 
 

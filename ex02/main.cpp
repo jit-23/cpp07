@@ -1,18 +1,52 @@
 #include "Array.hpp"
-
+ 
 int main()
 {
     
-    Array <int>_int(2);
-  //  Array <std::string>_strings(2);
+	/************* INT *************/		
+    Array <int>_int(10);
+	for (unsigned int i = 0; i < _int.Size(); i++){
+		_int.SetArray(i, i + 1);
+	}
+	try
+	{
+		for (unsigned int i = 0; i < _int.Size(); i++)
+		{
+			std::cout << _int[i] << std::endl;
+		}
+			
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << ORANGE << e.what() << END << '\n';
+	}
+	
     
-    for (unsigned int i = 0; i < _int.Size(); i++)
-        _int.SetArray(i, i + 1);    
- //   std::cout << _int[1] << std::endl;
-    
-    //for (unsigned int i = 0; i < _int.Size(); i++)
-    //    _int.SetArray(i, "asd");    
-    //std::cout << _strings[1] << std::endl;
+	
+	
+	/************* Strings *************/		
+	Array <std::string>_strings(10);
+	for (unsigned int i = 0; i < _strings.Size(); i++)
+	{
+		if (i % 2 == 0)
+			_strings.SetArray(i, std::string("even"));    
+		else
+			_strings.SetArray(i, std::string("odd"));    
+	}
+	try
+	{
+	 	for (unsigned int i = 0; i < _strings.Size() /* + 10 */; i++)
+		{
+			std::cout << _strings[i] << std::endl;	
+		}
+	
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << ORANGE << e.what() << END << '\n';
+	}
+	
+	
     
     
     return 0;
