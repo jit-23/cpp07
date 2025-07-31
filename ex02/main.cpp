@@ -1,12 +1,13 @@
 #include "Array.hpp"
- 
+ #include <cstdlib>
 int main()
 {
     
 	/************* INT *************/		
     Array <int>_int(10);
+	srand(time(0));
 	for (unsigned int i = 0; i < _int.Size(); i++){
-		_int.SetArray(i, i + 1);
+		_int.SetArray(i,rand() % 100);
 	}
 	try
 	{

@@ -24,7 +24,7 @@ template <typename T1>
 class Array
 {
 private:
-    unsigned int size;
+    int size;
     T1 *ptr;
 
 public:
@@ -32,11 +32,12 @@ public:
     Array(unsigned int i);
     Array(Array const &other);
     Array& operator=(Array const &other);
-    T1 operator[](int index);
+    T1& operator[](int index);
+    const T1& operator[](int index)const;
     ~Array();
     unsigned int Size() const;
     void SetArray(int _index, T1 v);
-    //void SetSize(unsigned int _size);
+    //void SetSize(unsigned in  t _size);
 };
 
 /**********************************************************/
@@ -99,7 +100,15 @@ Array<T1>::Array(unsigned int _size) : size(_size)
 }
 
 template<typename T1>
-T1 Array<T1>::operator[](int index)
+T1& Array<T1>::operator[](int index)
+{
+    if (static_cast<unsigned int >(index) >= this->Size())
+        throw std::runtime_error("index out of bound!");
+    return (this->ptr[index]);
+}
+
+template<typename T1>
+const T1& Array<T1>::operator[](int index)const 
 {
     if (static_cast<unsigned int >(index) >= this->Size())
         throw std::runtime_error("index out of bound!");
@@ -119,7 +128,20 @@ Array<T1>::~Array()
     std::cout << "Array Destructor called!" << std::endl;
 }
 
+/* 
+    // Subscript operator for write access
+    int& operator[](size_t index) {
+        if (index >= size)
+            throw std::out_of_range("Index out of bounds");
+        return data[index];
+    }
 
+    // Subscript operator for read-only access (const version)
+    const int& operator[](size_t index) const {
+        if (index >= size)
+            throw std::out_of_range("Index out of bounds");
+        return data[index];
+    } */
 
 
 
