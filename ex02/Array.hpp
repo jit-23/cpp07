@@ -117,6 +117,8 @@ const T1& Array<T1>::operator[](int index)const
 
 template<typename T1>
 void Array<T1>::SetArray(int _index, T1 v){
+    if (static_cast <unsigned int>(_index) >= this->Size())
+        throw std::runtime_error("index out of bound");
     this->ptr[_index] = v;
 }
 

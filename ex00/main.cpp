@@ -2,17 +2,27 @@
 
 int main()
 {
-    int x = 5;
-    int y = 3;
+    {
+        int x = 5;
+        int y = 3;
     
-    swap<int>(x, y); 
+        ::swap<int>(x, y);
 
-    std::cout << x << std::endl;
-    std::cout << y << std::endl;
-    
+        std::cout << x << std::endl;
+        std::cout << y << std::endl;
+
+    }
+    {
+        std::string a = "AAA";
+        std::string b = "BBB";
+
+        ::swap<std::string>(a, b); 
+
+        std::cout << a << std::endl;
+        std::cout << b << std::endl;
+
+    }
     return 0;
-
-
 }
 
 /* 
