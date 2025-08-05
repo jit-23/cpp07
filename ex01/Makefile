@@ -1,7 +1,7 @@
 NAME=exec
-CXXFLAGS= -std=c++98   -Wall -Werror -Wextra -g
+CXXFLAGS= -std=c++98#  -Wall -Werror -Wextra -g
 CXX=c++
-SRC= main.cpp
+SRC= main.cpp 
 OBJ:=$(patsubst %.cpp, %.o, $(SRC))
 
 all: ${NAME}
