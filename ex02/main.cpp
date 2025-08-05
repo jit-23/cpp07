@@ -5,6 +5,7 @@ int main()
     
 	/************* INT *************/		
     Array <int>_int(10);
+	Array <std::string>_strings(10);
 	srand(time(0));
 	try
 	{
@@ -22,7 +23,6 @@ int main()
 		std::cerr << ORANGE << e.what() << END << '\n';
 	}
 	/************* Strings *************/
-	Array <std::string>_strings(10);
 	try
 	{
 		for (unsigned int i = 0; i < _strings.Size() /*  + 10 */ ; i++){
@@ -52,10 +52,22 @@ int main()
 	Array <std::string>_strings2(_strings);
 	for (unsigned int i = 0; i < _strings.Size(); i++)
 		_strings.SetArray(i, std::string("empty"));    
+	
 	std::cout<< BLUE << "strings was modified and strings2 will keep its array"<< END << std::endl;
-
+	
 	for (unsigned int i = 0; i < _strings2.Size(); i++)
 		std::cout << _strings2[i] << std::endl;    
     
+	try
+	{
+		std::cout << _strings2[100] << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << ORANGE << e.what() <<END<< '\n';
+	}
+	
+
+
     return 0;
 }
